@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		document.getElementById("search").onclick = function() {
+			var request = new XMLHttpRequest();
+			//  request.open("GET","service.php?number="+document.getElementById("keyword").value);
+			request.open("GET", "http://help.baidu.com/question?prod_en=news");
+			request.send();
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					if (request.status == 200) {
+						document.getElementById("searchResult").innerHTML = request.responseText;
+
+					} else {
+						alert("发生错误：" + request.status);
+					}
+				}
+			}
+		}
+	</script>
+	<button id="search">搜索</button>
+	<p id="searchResult"></p>
+</body>
+</html>
